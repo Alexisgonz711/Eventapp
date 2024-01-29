@@ -1,23 +1,30 @@
 <?php
 class Database {
-    private $host = 'localhost';
-    private $db_name = 'eventapp';
-    private $port = '8889';
-    private $user = 'root';
-    private $password = 'root';
-    private $charset ='utf8mb4';
-    private $engine = 'mysql';
+    private static $host = 'localhost';
+    private static $db_name = 'eventapp';
+    private static $port = '8889';
+    private static $user = 'root';
+    private static $password = 'root';
+    private static $charset = 'utf8mb4';
+    private static $engine = 'mysql';
 
-    public $conn;
+    public static function getConnection() {
+        static $conn;
 
-    public static function getConnection(){
-        $this->conn = null ; 
-
-        try {
-            $this->conn = new PDO("$engine:host=$host;$port;dbname=$db_name", $username, $password);
-        } catch(PDOException $exception){
-            echo "Connection error :" . $exception->getMessage()
+        if ($conn === null) {
+            try {
+                $conn = new PDO(
+                    self::$engine . ':host=' . self::$host . ';port=' . self::$port . ';dbname=' . self::$db_name . ';charset=' . self::$charset,
+                    self::$user,
+                    self::$password
+                );
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                echo "Connected successfully";
+            } catch (PDOException $exception) {
+                echo "Connection error: " . $exception->getMessage();
+            }
         }
+
+        return $conn;
     }
-    return $this->conn;
 }
