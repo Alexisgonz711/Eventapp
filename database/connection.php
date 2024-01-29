@@ -1,4 +1,4 @@
-<?php
+<?php 
 class Database {
     private static $host = 'localhost';
     private static $db_name = 'eventapp';
@@ -19,12 +19,13 @@ class Database {
                     self::$password
                 );
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
                 echo "Connected successfully";
             } catch (PDOException $exception) {
                 echo "Connection error: " . $exception->getMessage();
             }
         }
-
         return $conn;
     }
 }
+
