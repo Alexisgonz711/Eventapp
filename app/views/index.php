@@ -24,3 +24,4 @@ $users = $userController->getUsers();
     <?php endif; ?>
 </body>
 </html>
+
