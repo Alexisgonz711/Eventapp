@@ -14,7 +14,6 @@ class UserController {
         return $users;
 
         // Charger la vue avec les données
-        require_once('../views/index.php');
+        require_once('../views/UserModel.php');
     }
 }
-

@@ -27,5 +27,18 @@ class Database {
         }
         return $conn;
     }
+    function getAllUsers()
+    {
+        $pdo = self::getConnection();
+        $stmt = $pdo->prepare(<<<SQL
+        SELECT * FROM users
+    SQL);
+
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
 }
 
