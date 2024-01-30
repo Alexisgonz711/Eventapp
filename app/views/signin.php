@@ -1,14 +1,8 @@
 <?php
+$page_title = "Inscription" ;
+include_once 'components/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signin</title>
-</head>
-<body>
+
     <h1>Inscription</h1>
     <form action="signin.inc.php" method="POST">
     <label for="username">Nom d'utilisateur</label> 
