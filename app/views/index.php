@@ -16,7 +16,7 @@ $users = $userController->getUsers();
     <?php if (!empty($users)): ?>
         <ul>
             <?php foreach ($users as $user): ?>
-                <li><?= $user['nom']; ?></li>
+                <li><?= $user['username']; ?></li>
             <?php endforeach; ?>
         </ul>
     <?php else: ?>
