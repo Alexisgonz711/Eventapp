@@ -14,6 +14,9 @@
     <label for="username">Nom d'utilisateur</label> 
         <input type="text" id="username" name="username" required>
         <br/>
+        <label for="email">Adresse email</label> 
+        <input type="email" id="email" name="email" required>
+        <br/>
         <label for="mdp">Mot de passe</label> 
         <input type="password" id="mdp" name="password" required>
         <br/>

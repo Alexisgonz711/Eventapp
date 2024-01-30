@@ -1,9 +1,12 @@
 <?php
 require_once '../../database/connection.php';
-require_once '../controllers/UserController.php';
+require_once (__DIR__ . '/../models/UserModel.php');
+
+$pdo = Database::getConnection();
 
 if(isset($_POST['signinsubmit'])){
     $pseudo = $_POST['username'];
+    $email = $_POST['email'];
     $mdp = $_POST['password'];
     $mdp2 =$_POST['rpassword'];
     if(passwordTest($mdp,$mdp2)== false){
