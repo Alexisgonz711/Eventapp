@@ -20,25 +20,12 @@ class Database {
                 );
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                echo "Connected successfully";
+                //echo "Connected successfully";
             } catch (PDOException $exception) {
                 echo "Connection error: " . $exception->getMessage();
             }
         }
         return $conn;
-    }
-    function getAllUsers()
-    {
-        $pdo = self::getConnection();
-        $stmt = $pdo->prepare(<<<SQL
-        SELECT * FROM users
-    SQL);
-
-        $stmt->execute();
-
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $result;
     }
 }
 
