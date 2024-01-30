@@ -49,6 +49,7 @@ function login($pdo,$pseudo,$mdp){
     }
     else if($checkmdp === true){
         session_start();
+        $_SESSION['id'] = true;
         $_SESSION['user'] = $pseudoExist['username'];
         $_SESSION['id_user'] = $pseudoExist['id'];
         $_SESSION['role_id'] = $pseudoExist['role_id'];

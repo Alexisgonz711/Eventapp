@@ -312,3 +312,87 @@ input[type="text"], input[type="password"], input[type="email"]  {
     display: block;
     margin: auto;
 }
+
+/* Style pour la modale */
+.modal {
+    display: none; /* Cache la modale par défaut */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Style pour le bouton de fermeture */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.event-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-top {
+    background-color: #f5f5f5;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.event-card p {
+    margin: 5px 0;
+}
+
+.card-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.modify-button,
+.delete-button,
+.participate-button {
+    background-color: #4285f4;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.modify-button:hover,
+.delete-button:hover,
+.participate-button:hover {
+    background-color: #3277b3;
+}
+
+section.event-list {
+    display: flex;
+    flex-wrap: wrap;
+}
