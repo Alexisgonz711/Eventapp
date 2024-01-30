@@ -15,25 +15,41 @@ class UserModel {
             return $users;
         } catch (PDOException $exception) {
             echo "Query error: " . $exception->getMessage();
-            return array(); 
+            return array();
         }
     }
+
+    // function getUser($email)
+    // {
+    //     $pdo = Database::getConnection();
+    //     $stmt = $pdo->prepare(<<<SQL
+    //         SELECT * from users
+    //         where email = :email
+    //     SQL);
+
+    //     $stmt->execute([
+    //         ":email" => $email
+    //     ]);
+
+    //     $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    //     return $result;
+    // }
 }
 function login($pdo,$pseudo,$mdp){
     $pseudoExist = pseudoExist($pdo,$pseudo,$pseudo);
     if ($pseudoExist === false){
-        header('location: login.php?error=connectionfailed'); 
+        header('location: login.php?error=connectionfailed');
         exit();
-    } 
+    }
     $pwdh = $pseudoExist['password'];
-    $checkmdp = password_verify($mdp,$pwdh); 
+    $checkmdp = password_verify($mdp,$pwdh);
     if ($checkmdp === false){
-        header('location: login.php?error=connectionfailed'); 
+        header('location: login.php?error=connectionfailed');
         exit();
     }
     else if($checkmdp === true){
-        session_start(); 
-        $_SESSION['user'] = $pseudoExist['username']; 
+        session_start();
+        $_SESSION['user'] = $pseudoExist['username'];
         $_SESSION['id_user'] = $pseudoExist['id'];
         $_SESSION['role_id'] = $pseudoExist['role_id'];
         header('location: index.php?connectionsucceed='.$_SESSION['user']);
@@ -44,7 +60,7 @@ function pseudoExist($pdo,$pseudo,$email){
     $sql = "select * from users where USERNAME=? OR EMAIL=?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$pseudo,$email]);
-    $result = $stmt->fetch(PDO::FETCH_ASSOC); 
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if(!$result){
         $result = false;
         return $result;
@@ -61,7 +77,7 @@ function createUser($pdo,$pseudo,$email,$mdp){
 
 
 
-    
+
     header('location: index.php');
 }
 
@@ -70,4 +86,3 @@ function passwordTest($password,$checkpassword) {
         return true;
     }else {return false;}
 }
-

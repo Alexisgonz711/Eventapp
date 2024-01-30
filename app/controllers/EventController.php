@@ -1,8 +1,10 @@
 <?php
 
-require_once('../models/EventsModel.php');
+require_once('../models/EventModel.php');
 
 class EventController {
-    public function getEvents() {
-    }
+  public function getEvents() {
+    $eventModel = new EventModel();
+    $events = $eventModel->getAllEvents();
+ }
 }
