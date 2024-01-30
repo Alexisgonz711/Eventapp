@@ -1,40 +1,34 @@
 <?php
-require_once('../models/UserModel.php');
-
-$result = "";
-if (filter_input(INPUT_SERVER, "REQUEST_METHOD") == "POST") {
-  $result = login();
-}
 
 ?>
 
-<div class="login-container">
-  <div class="page-cover">
-    <h1>Bienvenu sur Eventapp</h1>
-  </div>
-  <div class="page-main">
-    <div class="form-container">
-      <h2>Login</h2>
-      <?php if ($result && $result !== "") { ?>
-        <div class="error-message">
-          <?= $result ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+<h1>Connexion</h1>
+    <form action="login.inc.php" method="POST">
+        <label for="pseudo">Pseudo</label> <input type="text" id="pseudo" name="username" required>
+        <br/>
+        <label for="mdp">Mot de passe</label> <input type="password" id="mdp" name="password" required>
+        <div class="errlog">
+        <?php
+        if(isset($_GET["error"])){?>
+        <h4>Le nom d'utilisateur et/ou le mot de passe utilisé contient des erreurs.</h4>
+        <?php
+        }
+        ?>
         </div>
-      <?php } ?>
+        <input type="reset" value="réinitialiser"/> <input type="submit" name="loginsubmit" value="connexion"/>
+        <a href="forgotpassword.php" class="apwd">Mot de passe oublié ?</a>
 
-      <form action="" method="post">
-        <div class="form-container">
-          <div class="email">
-            <label for="email">Email :</label>
-            <input type="text" name="email" id="email" placeholder="example@example.com">
-          </div>
-          <div class="password">
-            <label for="password">Mot de passe :</label>
-            <input type="password" name="password" id="password" placeholder="********">
-          </div>
+        <a href="signin.php" class="apwd">Pas encore inscrit ?</a>
 
-          <button type="submit">Login</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+    </form>
+</body>
+</html>

@@ -15,7 +15,7 @@ class UserModel {
             return $events;
         } catch (PDOException $exception) {
             echo "Query error: " . $exception->getMessage();
-            return array(); 
+            return array();
         }
     }
 }

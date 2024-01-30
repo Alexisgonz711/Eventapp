@@ -15,41 +15,40 @@ class UserModel {
             return $users;
         } catch (PDOException $exception) {
             echo "Query error: " . $exception->getMessage();
-            return array(); 
+            return array();
         }
     }
 }
 function login($pdo,$pseudo,$mdp){
-    $pseudoExist = pseudoExist($pdo,$pseudo,$pseudo);
-    if ($pseudoExist === false){
-        header('location: login.php?error=connectionfailed'); //page d'erreur de connexion
-        exit();//fin de la fonction
-    } 
-    $pwdh = $pseudoExist['MDP_USER']; // mdp encrypté
-    $checkmdp = password_verify($mdp,$pwdh); // vérifier le mdp
-    if ($checkmdp === false){
-        header('location: login.php?error=connectionfailed'); //page d'erreur de connexion
-        exit();//fin de la fonction
-    }
-    else if($checkmdp === true){
-        session_start(); //commencer la connexion
-        $_SESSION['users'] = $pseudoExist['PSEUDO_USER']; //donnée de connexion d'un utilisateur --- pseudo
-        $_SESSION['avatar'] = $pseudoExist['AVATAR_USER'];
-        header('location: index.php?connectionsucceed='.$_SESSION['users']);
-    }
+  $pseudoExist = pseudoExist($pdo,$pseudo,$pseudo);
+  if ($pseudoExist === false){
+      header('location: login.php?error=connectionfailed'); //page d'erreur de connexion
+      exit();//fin de la fonction
+  }
+  $pwdh = $pseudoExist['password']; // mdp encrypté
+  $checkmdp = password_verify($mdp,$pwdh); // vérifier le mdp
+  if ($checkmdp === false){
+      header('location: login.php?error=connectionfailed'); //page d'erreur de connexion
+      exit();//fin de la fonction
+  }
+  else if($checkmdp === true){
+      session_start(); //commencer la connexion
+      $_SESSION['user'] = $pseudoExist['username'];
+      header('location: index.php?connectionsucceed='.$_SESSION['user']);
+  }
 }
 
 function pseudoExist($pdo,$pseudo,$email){
-    $sql = "select * from users where USERNAME=? OR EMAIL=?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$pseudo,$email]);
-    $result = $stmt->fetch(PDO::FETCH_ASSOC); 
-    if(!$result){
-        $result = false;
-        return $result;
-    } else {
-        return $result;
-    }
+  $sql = "select * from users where username=? or email=?";
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute([$pseudo,$email]);
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+  if(!$result){
+      $result = false;
+      return $result;
+  } else {
+      return $result;
+  }
 }
 
 function createUser($pdo,$pseudo,$email,$mdp){
@@ -60,7 +59,7 @@ function createUser($pdo,$pseudo,$email,$mdp){
 
 
 
-    
+
     header('location: index.php');
 }
 
@@ -69,4 +68,3 @@ function passwordTest($password,$checkpassword) {
         return true;
     }else {return false;}
 }
-
