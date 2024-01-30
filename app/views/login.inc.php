@@ -8,6 +8,8 @@ if(isset($_POST['loginsubmit'])){
     $pseudo = $_POST['username'];
     $mdp = $_POST['password'];
     login($pdo, $pseudo, $mdp);
+    session_start();
+    //$_SESSION['id'] = true;
 }
 else {
     header('location: login.php');
