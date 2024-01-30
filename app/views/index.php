@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('../controllers/UserController.php');
 
 $page_title = "EventApp :: Welcome" ;

@@ -15,7 +15,7 @@
 
         <ul class="pure-menu-list">
             <li class="pure-menu-item pure-menu-selected"><a href="index.php" class="pure-menu-link">Home</a></li>
-            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Events</a></li>
+            <li class="pure-menu-item"><a href="users.php" class="pure-menu-link">Users</a></li>
             <li class="pure-menu-item"><a href="login.php" class="pure-menu-link">Login</a></li>
             <li class="pure-menu-item"><a href="signin.php" class="pure-menu-link">Sign in</a></li>
         </ul>
