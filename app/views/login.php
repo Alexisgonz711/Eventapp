@@ -1,7 +1,10 @@
 <?php
+
 $page_title = "Connexion" ;
 include_once 'components/header.php';
+
 ?>
+
 <h1>Connexion</h1>
     <form action="login.inc.php" method="POST">
         <label for="pseudo">Pseudo</label> <input type="text" id="pseudo" name="username" required>
@@ -21,5 +24,6 @@ include_once 'components/header.php';
         <a href="signin.php" class="apwd">Pas encore inscrit ?</a>
 
     </form>
-</body>
-</html>
+<?php
+include_once 'components/footer.php';
+?>
