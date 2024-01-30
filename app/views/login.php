@@ -1,16 +1,10 @@
 <?php
 
+$page_title = "Connexion" ;
+include_once 'components/header.php';
+
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-<body>
 <h1>Connexion</h1>
     <form action="login.inc.php" method="POST">
         <label for="pseudo">Pseudo</label> <input type="text" id="pseudo" name="username" required>
@@ -30,5 +24,6 @@
         <a href="signin.php" class="apwd">Pas encore inscrit ?</a>
 
     </form>
-</body>
-</html>
+<?php
+include_once 'components/footer.php';
+?>

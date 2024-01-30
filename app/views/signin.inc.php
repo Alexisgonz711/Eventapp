@@ -18,7 +18,7 @@ if(isset($_POST['signinsubmit'])){
         exit();
     }
     createUser($pdo,$pseudo,$email,$mdp);
-}else {
-    header('location: signin.php');
+} else {
+    header('location: login.php');
 
 }
