@@ -68,7 +68,10 @@ require_once '../../database/connection.php';
 
             echo '<div class="card-buttons">';
             echo '<button class="modify-button">Modifier</button>';
-            echo '<button class="delete-button">Supprimer</button>';
+            echo '<form action="delete_event.php" method="POST" style="display: inline;">';
+            echo '<input type="hidden" name="event_id" value="' . $event['event_id'] . '">';
+            echo '<button type="submit" class="delete-button" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer cet événement ?\')">Supprimer</button>';
+            echo '</form>';
             echo '</div>';
 
             echo '</div>';
