@@ -43,4 +43,26 @@ class EventModel {
           return false;
       }
   }
+
+  public function deleteEvent($event_id) {
+    $conn = Database::getConnection();
+
+    try {
+        // Préparez votre requête SQL pour supprimer un événement en fonction de son ID
+        $stmt = $conn->prepare('DELETE FROM events WHERE event_id = ?');
+
+        // Liez la valeur au paramètre de la requête
+        $stmt->bindParam(1, $event_id);
+
+        // Exécutez la requête
+        $stmt->execute();
+
+        // Retournez true si la suppression a réussi
+        return true;
+    } catch (PDOException $exception) {
+        // En cas d'erreur, affichez le message d'erreur
+        echo "Query error: " . $exception->getMessage();
+        return false;
+    }
+}
 }
