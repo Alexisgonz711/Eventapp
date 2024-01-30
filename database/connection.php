@@ -1,4 +1,4 @@
-<?php 
+<?php
 class Database {
     private static $host = 'localhost';
     private static $db_name = 'eventapp';
@@ -28,4 +28,3 @@ class Database {
         return $conn;
     }
 }
-
