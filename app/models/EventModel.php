@@ -3,16 +3,16 @@
 require_once(__DIR__ . '/../../database/connection.php');
 
 class UserModel {
-    public function getAllUsers() {
+    public function getAllEvents() {
         $conn = Database::getConnection();
 
         try {
-            $stmt = $conn->prepare('SELECT * FROM users');
+            $stmt = $conn->prepare('SELECT * FROM events');
             $stmt->execute();
 
-            $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            return $users;
+            return $events;
         } catch (PDOException $exception) {
             echo "Query error: " . $exception->getMessage();
             return array(); 
