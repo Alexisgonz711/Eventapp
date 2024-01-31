@@ -10,6 +10,7 @@ function showEventModal(event) {
 function closeModal() {
     // Masquer la modale
     var modal = document.getElementById('editModal');
+
     modal.style.display = 'none';
 }
 

@@ -302,6 +302,7 @@ input[type="text"], input[type="password"], input[type="email"]  {
 
 .pure-g {
     flex-flow:row!important;
+    justify-content: center;
 }
 
 .button-secondary {

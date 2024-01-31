@@ -9,7 +9,9 @@ class EventModel
     $conn = Database::getConnection();
 
     try {
-      $stmt = $conn->prepare('SELECT * FROM events');
+      $stmt = $conn->prepare('SELECT events.*, users.username AS creator_username
+      FROM events
+      INNER JOIN users ON events.creator_id = users.id');
       $stmt->execute();
 
       $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -20,31 +22,26 @@ class EventModel
       return array();
     }
   }
-
-  public function createEvent($activity_type, $description, $start, $end)
+  public function createEvent($creator_id, $activity_type, $description, $start, $end)
   {
-    $conn = Database::getConnection();
+      $conn = Database::getConnection();
 
-    try {
-      // Préparez votre requête SQL pour insérer un nouvel événement
-      $stmt = $conn->prepare('INSERT INTO events (activity_type, description, start, end) VALUES (?, ?, ?, ?)');
+      try {
+          $stmt = $conn->prepare('INSERT INTO events (creator_id, activity_type, description, start, end) VALUES (?, ?, ?, ?, ?)');
 
-      // Liez les valeurs aux paramètres de la requête
-      $stmt->bindParam(1, $activity_type);
-      $stmt->bindParam(2, $description);
-      $stmt->bindParam(3, $start);
-      $stmt->bindParam(4, $end);
+          $stmt->bindParam(1, $creator_id);
+          $stmt->bindParam(2, $activity_type);
+          $stmt->bindParam(3, $description);
+          $stmt->bindParam(4, $start);
+          $stmt->bindParam(5, $end);
 
-      // Exécutez la requête
-      $stmt->execute();
+          $stmt->execute();
 
-      // Retournez true si l'insertion a réussi
-      return true;
-    } catch (PDOException $exception) {
-      // En cas d'erreur, affichez le message d'erreur
-      echo "Query error: " . $exception->getMessage();
-      return false;
-    }
+          return true;
+      } catch (PDOException $exception) {
+          echo "Query error: " . $exception->getMessage();
+          return false;
+      }
   }
 
   public function deleteEvent($event_id)
@@ -102,4 +99,6 @@ class EventModel
       return false;
     }
   }
+
+
 }
