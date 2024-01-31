@@ -26,4 +26,9 @@ class UserController {
         $userModel = new UserModel;
         return $userModel->deleteUser($user_id);
     }
+
+    public static function checkIfUserParticipated($eventId, $userId) {
+        $isParticipant = UserModel::checkIfUserParticipated($eventId, $userId);
+        return $isParticipant;
+    }
 }

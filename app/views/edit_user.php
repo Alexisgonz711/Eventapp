@@ -4,42 +4,28 @@ $page_title = "Modifier un utilisateur";
 include_once 'components/header.php';
 include_once '../controllers/UserController.php';
 
-// Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION)) {
     header('Location: login.php');
     exit;
 }
-
-// Vérifier le rôle de l'utilisateur
 if ($_SESSION['role_id'] != 1) {
     header('Location: index.php');
     exit;
 }
-
-// Vérifier si l'identifiant de l'utilisateur à modifier est présent dans l'URL
 if (!isset($_GET['uid']) || empty($_GET['uid'])) {
     header('Location: index.php');
     exit;
 }
 
-// Récupérer l'identifiant de l'utilisateur à modifier
 $user_id = $_GET['uid'];
-
-// Instancier le contrôleur des utilisateurs
 $userController = new UserController;
-
-// Récupérer les informations de l'utilisateur à modifier
 $user = $userController->getUserById($user_id);
 
-// Vérifier si l'utilisateur existe
 if (!$user) {
     header('Location: index.php');
     exit;
 }
-
-// Vérifier si le formulaire a été soumis
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Valider et mettre à jour les informations de l'utilisateur
     $updatedUser = array(
         'username' => $_POST['username'],
         'email' => $_POST['email'],
@@ -49,11 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $success = $userController->updateUser($user_id, $updatedUser);
 
     if ($success) {
-        // Rediriger vers la page des utilisateurs après la modification
         header('Location: users.php');
         exit;
-    } else {
-        // Afficher une erreur en cas d'échec de la mise à jour
+    } else
         $error_message = "Erreur lors de la mise à jour de l'utilisateur.";
     }
 }
@@ -81,7 +65,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <select id="role_id" name="role_id" required>
                             <option value="1" <?= ($user['role_id'] == 1) ? 'selected' : '' ?>>Jedi</option>
                             <option value="2" <?= ($user['role_id'] == 2) ? 'selected' : '' ?>>Padawan</option>
-                            <!-- Ajouter d'autres options en fonction de votre logique -->
                         </select>
 
                         <button type="submit" class="pure-button">Enregistrer les modifications</button>

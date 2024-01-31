@@ -23,6 +23,7 @@ require_once '../controllers/UserController.php';
 $userController = new UserController;
 
 $success = $userController->deleteUser($user_id);
+$_SESSION['success_message'] = "L'utilisateur a été supprimé avec succès.";
 
 if ($success) {
     header('Location: users.php');
@@ -30,4 +31,5 @@ if ($success) {
 } else {
     echo "Erreur lors de la suppression de l'utilisateur.";
 }
+
 ?>
