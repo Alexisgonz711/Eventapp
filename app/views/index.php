@@ -8,9 +8,9 @@ require_once '../../database/connection.php';
 
 include_once 'components/header.php';
 
-if(!isset($_SESSION) || !$_SESSION['id']){ 
-  header('Location: login.php'); 
-  exit; 
+if(!isset($_SESSION) || !$_SESSION['id']){
+  header('Location: login.php');
+  exit;
 }
 ?>
 
@@ -42,7 +42,7 @@ if(!isset($_SESSION) || !$_SESSION['id']){
                     <button class="modify-button"><a href="edit_event.php?event_id=<?=$event['event_id']?>">Éditer</a></button>
                     <form action="delete_event.php" method="POST" style="display: inline;">
                       <input type="hidden" name="event_id" value="<?= $event['event_id']?>">
-                      <button type="submit" class="delete-button" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer cet événement ?\')">Supprimer</button>
+                      <button type="submit" class="delete-button" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet événement ?')">Supprimer</button>
                     </form>
                   </div>
 
@@ -109,7 +109,7 @@ if(!isset($_SESSION) || !$_SESSION['id']){
       </div>
   </div>
 
-      
+
 <!--section class="event">
   <h2>Créer un événement</h2>
   <form action="create_event.php" method="POST">

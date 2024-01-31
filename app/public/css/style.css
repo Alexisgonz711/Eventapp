@@ -395,4 +395,5 @@ input[type="text"], input[type="password"], input[type="email"]  {
 section.event-list {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
