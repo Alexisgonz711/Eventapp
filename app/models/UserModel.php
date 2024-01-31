@@ -19,21 +19,46 @@ class UserModel {
         }
     }
 
-    // function getUser($email)
-    // {
-    //     $pdo = Database::getConnection();
-    //     $stmt = $pdo->prepare(<<<SQL
-    //         SELECT * from users
-    //         where email = :email
-    //     SQL);
+    public function getUserById($user_id) {
+        $conn = Database::getConnection();
+        $sql = "SELECT * FROM users WHERE id = :user_id";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $conn = null;
 
-    //     $stmt->execute([
-    //         ":email" => $email
-    //     ]);
+        return $user;
+    }
+    public function updateUser($user_id, $updatedUser) {
+        $conn = Database::getConnection();
+        $sql = "UPDATE users SET username = :username, email = :email, role_id = :role_id WHERE id = :user_id";
+        $stmt = $conn->prepare($sql);
 
-    //     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    //     return $result;
-    // }
+        $stmt->bindParam(':username', $updatedUser['username'], PDO::PARAM_STR);
+        $stmt->bindParam(':email', $updatedUser['email'], PDO::PARAM_STR);
+        $stmt->bindParam(':role_id', $updatedUser['role_id'], PDO::PARAM_INT);
+        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $success = $stmt->execute();
+        $conn = null;
+
+        return $success;
+    }
+
+    public function deleteUser($user_id) {
+        $conn = Database::getConnection();
+
+        $sql = "DELETE FROM users WHERE id = :user_id";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+
+        $success = $stmt->execute();
+
+        $conn = null;
+
+        return $success;
+    }
 }
 function login($pdo,$pseudo,$mdp){
     $pseudoExist = pseudoExist($pdo,$pseudo,$pseudo);
