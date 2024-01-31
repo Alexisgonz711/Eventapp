@@ -91,7 +91,7 @@ if(!isset($_SESSION) || !$_SESSION['id']){
   </div>
   <div id="editModal" class="modal">
       <div class="modal-content">
-          <span class="close" onclick="closeModal">&times;</span>
+          <span class="close" onclick="closeModal()">&times;</span>
           <h2>Créer un évenement</h2>
           <div class="l-box-lg-4-4 pure-u-3-3">
               <form action="create_event.php" method="POST">

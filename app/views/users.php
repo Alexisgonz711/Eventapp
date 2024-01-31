@@ -22,10 +22,10 @@ if($_SESSION['role_id'] != 1 )
 <div class="content-wrapper">
     <div class="content">
         <div class="l-box-lrg pure-u-2 pure-u-md-5-5">
-            <div class="pure-g">
-                <div class="l-box-lg-3-4 pure-u-3-3">
+            <div>
+                <div class="l-box-lg-4-4 pure-u-3-3">
                     <h1 class="content-head is-center">Liste des utilisateurs</h1>
-                    <table id="userTable" class="pure-table pure-table-horizontal content-table pure-table-centered">
+                    <table id="userTable" class="pure-table pure-table-horizontal content-table pure-table-centered" style="margin:auto">
                         <thead>
                             <tr>
                                 <th>Nom d'utilisateur</th>
@@ -51,8 +51,8 @@ if($_SESSION['role_id'] != 1 )
                                         }
                                         ?>
                                     </td>
-                                    <td><button onclick="showEditForm(event, <?= $user['id'] ?>)" class="pure-button button-secondary" data-modal-id="editModal<?= $user['id'] ?>">Modifier</button></td>
-                                    <td><button onclick="editUser(event, <?= $user['id'] ?>)" class="pure-button button-secondary">Supprimer</button></td>
+                                    <td><button  class="pure-button"><a href="edit_user.php?uid=<?=$user['id']?>">Modifier</a></button></td>
+                                    <td><button onclick="confirmDelete(<?= $user['id'] ?>)" class="pure-button button-secondary">Supprimer</button></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
