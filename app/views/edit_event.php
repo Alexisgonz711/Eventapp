@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['event_id'])) {
     } else {
         echo "Événement non trouvé.";
     }
-} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') 
+} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $event_id = $_POST['event_id'];
     $new_activity_type = $_POST['new_activity_type'];
     $new_description = $_POST['new_description'];

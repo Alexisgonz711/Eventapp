@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($success) {
         header('Location: users.php');
         exit;
-    } else
+    } else{ 
         $error_message = "Erreur lors de la mise à jour de l'utilisateur.";
     }
 }
