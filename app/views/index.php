@@ -1,5 +1,6 @@
 <?php
 
+
 session_start();
 $page_title = "Les événements";
 require_once(__DIR__ . '/../models/EventModel.php');
@@ -15,6 +16,9 @@ if(!isset($_SESSION) || !$_SESSION['id']){
 ?>
 
 <div class="content-wrapper">
+
+<?php var_dump($_SESSION['id_user']) ?>
+
   <div class="content">
     <div class="l-box-lrg pure-u-2 pure-u-md-5-5">
         <div class="pure-g">
@@ -35,6 +39,7 @@ if(!isset($_SESSION) || !$_SESSION['id']){
                     <p>Début: <?=$event['start']?> </p>
                     <p>Fin: <?=$event['end']?></p>
                   </div>
+                  <p>Créateur: <?=$event['creator_username']?></p>
                   <p>Type d'activité : <?=$event['activity_type']?></p>
                   <p>Description: <?=$event['description']?></p>
 
@@ -42,7 +47,7 @@ if(!isset($_SESSION) || !$_SESSION['id']){
                     <button class="modify-button"><a href="edit_event.php?event_id=<?=$event['event_id']?>">Éditer</a></button>
                     <form action="delete_event.php" method="POST" style="display: inline;">
                       <input type="hidden" name="event_id" value="<?= $event['event_id']?>">
-                      <button type="submit" class="delete-button" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet événement ?')">Supprimer</button>
+                        <button type="submit" class="delete-button" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet événement ?')">Supprimer</button>
                     </form>
                   </div>
 
@@ -95,6 +100,7 @@ if(!isset($_SESSION) || !$_SESSION['id']){
           <h2>Créer un évenement</h2>
           <div class="l-box-lg-4-4 pure-u-3-3">
               <form action="create_event.php" method="POST">
+                  <input type="hidden" name="creator_id" value="<?= $_SESSION['id_user']; ?>">
                   <label for="activity_type">Type d'activité</label>
                   <input type="text" id="activity_type" name="activity_type" required>
                   <label for="email">Description</label>
