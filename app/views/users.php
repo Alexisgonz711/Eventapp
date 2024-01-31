@@ -25,6 +25,10 @@ if($_SESSION['role_id'] != 1 )
             <div>
                 <div class="l-box-lg-4-4 pure-u-3-3">
                     <h1 class="content-head is-center">Liste des utilisateurs</h1>
+                    <div id="notification" class="notification">
+                        <span id="notification-message"></span>
+                        <span class="close-button" onclick="closeNotification()">&times;</span>
+                    </div>
                     <table id="userTable" class="pure-table pure-table-horizontal content-table pure-table-centered" style="margin:auto">
                         <thead>
                             <tr>
@@ -35,7 +39,6 @@ if($_SESSION['role_id'] != 1 )
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Affichage de la liste des utilisateurs -->
                             <?php foreach($users as $user): ?>
                                 <tr>
                                     <td><?= $user["username"] ?></td>
@@ -62,6 +65,17 @@ if($_SESSION['role_id'] != 1 )
         </div>
     </div>
 </div>
+<script>
 
+document.addEventListener('DOMContentLoaded', function () {
+    var successMessage = "<?php echo isset($_SESSION['success_message']) ? $_SESSION['success_message'] : ''; ?>";
+
+    if (successMessage) {
+        showNotification(successMessage);
+
+        <?php unset($_SESSION['success_message']); ?>
+    }
+});
+</script>
 <?php
 include_once 'components/footer.php';

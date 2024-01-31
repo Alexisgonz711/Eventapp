@@ -59,6 +59,20 @@ class UserModel {
 
         return $success;
     }
+
+    public static function checkIfUserParticipated($eventId, $userId) {
+        try {
+            $pdo = Database::getConnection();
+
+            $stmt = $pdo->prepare("SELECT COUNT(*) FROM user_events WHERE user_id = ? AND event_id = ?");
+            $stmt->execute([$userId, $eventId]);
+            $count = $stmt->fetchColumn();
+
+            return $count > 0;
+        } catch (PDOException $e) {
+            die('Erreur lors de la vérification de la participation à l\'événement : ' . $e->getMessage());
+        }
+    }
 }
 function login($pdo,$pseudo,$mdp){
     $pseudoExist = pseudoExist($pdo,$pseudo,$pseudo);
